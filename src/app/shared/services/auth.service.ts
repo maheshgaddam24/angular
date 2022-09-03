@@ -48,7 +48,7 @@ export class AuthService {
       });
   }
   // Sign up with email/password
-  SignUp(email: string, password: string) {
+  SignUp(email: string, password: string, cpassword: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
@@ -91,6 +91,14 @@ export class AuthService {
       this.router.navigate(['dashboard']);
     });
   }
+
+  // Sign in with Facebook
+  FacebookAuth() {
+    return this.AuthLogin(new auth.FacebookAuthProvider()).then((res: any) => {
+      this.router.navigate(['dashboard']);
+    });
+  }
+
   // Auth logic to run auth providers
   AuthLogin(provider: any) {
     return this.afAuth
